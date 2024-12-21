@@ -1,0 +1,35 @@
+input , select , textarea{
+    border: 1px solid rgb(86, 86, 86);
+    padding: 8px 10px;
+    width: 100%;
+}
+
+input:focus , select:focus , textarea:focus{
+    outline: none;
+    border: 1px solid rgb(34, 34, 34);
+}
+
+.primary-contained-btn{
+    background-color: var(--primary);
+    color: white;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.primary-contained-btn:hover{
+    background-color: var(--secondary);
+    transition: ease-out 0.2s;
+}
+
+.primary-outlined-btn{
+    background-color: white;
+    color: var(--primary);
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border: 1px solid var(--primary);
+    cursor: pointer;
+    border-radius: 5px;
+}
