@@ -4,8 +4,8 @@ import loadersReducer from "./loadersSlice";
 
 const store = configureStore({
   reducer: {
-    loaders: loadersReducer,
     users: usersReducer,
+    loaders: loadersReducer,
   },
 });
 

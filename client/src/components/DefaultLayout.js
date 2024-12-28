@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-
 function DefaultLayout({ children }) {
   const [collapsed, setCollapsed] = React.useState(false);
   const { user } = useSelector((state) => state.users);
@@ -124,11 +123,11 @@ function DefaultLayout({ children }) {
           </div>
 
           <div>
-            <h1 className="text-xl text-secondary">DIGI-WALLET</h1>
+            <h1 className="text-xl text-secondary cursor-default">DIGI WALLET</h1>
           </div>
 
           <div>
-            <h1 className="text-sm underline text-secondary">
+            <h1 className="text-sm underline text-secondary cursor-default">
               {user?.firstName} {user?.lastName}
             </h1>
           </div>

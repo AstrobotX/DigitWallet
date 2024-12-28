@@ -9,7 +9,7 @@ function Home() {
     <div>
       <PageTitle
         title={`
-            Hello  ${user.firstName} ${user.lastName} ,  Welcome to the SHEYWALLET
+            Hello  ${user.firstName} ${user.lastName} ,  Welcome to the DIGIWALLET
        `}
       />
       <div className="bg-tertiary p-2 mt-2 w-50 br-3 flex flex-col gap-1 uppercase">
@@ -19,7 +19,7 @@ function Home() {
         </div>
         <div className="flex justify-between">
           <h1 className="text-md text-white">Balance</h1>
-          <h1 className="text-md text-white">$ {user.balance || 0}</h1>
+          <h1 className="text-md text-white">₹ {user.balance || 0}</h1>
         </div>
       </div>
 

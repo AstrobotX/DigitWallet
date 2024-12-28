@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { message } from "antd";
-import { getUserProfile } from "../apicalls/users";
+import { GetUserInfo } from "../apicalls/users";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ReloadUser, SetUser } from "../redux/usersSlice";
@@ -15,7 +15,7 @@ function ProtectedRoute(props) {
   const getData = async () => {
     try {
       dispatch(ShowLoading());
-      const response = await getUserProfile();
+      const response = await GetUserInfo();
       dispatch(HideLoading());
       if (response.success) {
         dispatch(SetUser(response.data));

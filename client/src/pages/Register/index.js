@@ -1,102 +1,109 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import  {Col, Form, message, Row} from "antd";
-import { Input } from 'antd';
-import { Select } from "antd";
-import { registerUser } from '../../apicalls/users';
+import React from "react";
+import { Col, Form, message, Row } from "antd";
+import { useNavigate } from "react-router-dom";
+import { RegisterUser } from "../../apicalls/users";
+import { useDispatch } from "react-redux";
+import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
 function Register() {
-const navigate = useNavigate();
-const onFinish = async(values) => {
-        try {
-                const response = await registerUser(values);
-                if(response.success){
-                        message.success(response.message);
-                        navigate('/login');
-                } else {
-                        alert(response.message);
-                }
-        } catch (error) {
-                alert(error.message);
-        }
-}
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const onFinish = async (values) => {
+    try {
+      dispatch(ShowLoading());
+      const response = await RegisterUser(values);
+      dispatch(HideLoading())
+      if (response.success) {
+        message.success(response.message);
+        navigate("/login");
+      } else {
+        message.error(response.message);
+      }
+    } catch (error) {
+      dispatch(HideLoading())
+      message.error(error.message);
+    }
+  };
 
-return (
-    <div className='m-5 p-3'>
-        <div className='flex justify-between items-center'>         
-            <h1 className='text-2xl'>
-                    REGISTER
-            </h1>
-            <h1 className='text-sm underline' onClick={() => navigate('/login')}>
-                    Already have an account? Login here
-            </h1>
+  return (
+    <div className="m-5">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl">DIGIWALLET - REGISTER</h1>
+
+        <h1 className="text-sm underline" onClick={() => navigate("/login")}>
+          Already a member? Log in
+        </h1>
+      </div>
+      <hr />
+      <Form layout="vertical" onFinish={onFinish}>
+        <Row gutter={16}>
+          <Col span={6}>
+            <Form.Item label="First Name" name="firstName">
+              <input type="text" />
+            </Form.Item>
+          </Col>
+          <Col span={6}>
+            <Form.Item label="Last Name" name="lastName">
+              <input type="text" />
+            </Form.Item>
+          </Col>
+          <Col span={6}>
+            <Form.Item label="Email" name="email">
+              <input type="text" />
+            </Form.Item>
+          </Col>
+          <Col span={6}>
+            <Form.Item label="Mobile" name="phoneNumber">
+              <input type="text" />
+            </Form.Item>
+          </Col>
+
+          <Col span={6}>
+            <Form.Item label="Identification Type" name="identificationType">
+              <select>
+                <option value="NATIONAL ID">National ID</option>
+                <option value="PASSPORT">Passport</option>
+                <option value="DRIVING LICENSE">Driving License</option>
+                <option value="SOCIAL CARD">Social Security Card (SSN)</option>
+              </select>
+            </Form.Item>
+          </Col>
+
+          <Col span={6}>
+            <Form.Item
+              label="Identification Number"
+              name="identificationNumber"
+            >
+              <input type="text" />
+            </Form.Item>
+          </Col>
+
+          <Col span={24}>
+            <Form.Item label="Address" name="address">
+              <textarea type="text" />
+            </Form.Item>
+          </Col>
+
+          <Col span={6}>
+            <Form.Item label="Password" name="password">
+              <input type="password" />
+            </Form.Item>
+          </Col>
+
+          <Col span={6}>
+            <Form.Item label="Confirm Password" name="confirmPassword">
+              <input type="password" />
+            </Form.Item>
+          </Col>
+        </Row>
+
+        <div className="flex justify-end">
+          <button className="primary-contained-btn" type="submit">
+            Register
+          </button>
         </div>
-            <hr />
-            <Form layout='vertical' onFinish={onFinish}>
-                    <Row gutter={16}>  
-                            <Col span={6}>
-                                    <Form.Item label='First Name' name="firstName">
-                                            <Input type='text' />
-                                    </Form.Item>
-                            </Col>
-                            <Col span={6}>
-                                    <Form.Item label='Last Name' name="lastName">
-                                            <Input type='text' />
-                                    </Form.Item>
-                            </Col>
-                            <Col span={6}>
-                                    <Form.Item label='Email' name="email">
-                                            <Input type='email' />
-                                    </Form.Item>
-                            </Col>
-                            <Col span={6}>
-                                    <Form.Item label='Phone Number' name="phoneNumber">
-                                            <Input type='text' />
-                                    </Form.Item>
-                            </Col>
-
-                            <Col span={6}>
-                                <Form.Item label='Identification Type' name="identificationType">
-                                    <Select placeholder='Select Identification Type'>
-                                        <option value='aadhar Card'>Aadhar Card</option>
-                                        <option value='passport'>Passport</option>
-                                        <option value='driversLicense'>Driver's License</option>
-                                        <option value='voterId'>Voter ID</option>
-                                    </Select>
-                                </Form.Item>
-                            </Col>
-
-                            <Col span={6}>
-                                <Form.Item label='Identification Number' name="identificationNumber">
-                                    <Input type='text' />
-                                </Form.Item>
-                            </Col>
-
-                            <Col span={24}>
-                                <Form.Item label='Address' name="address">
-                                    <Input type='text' />
-                                </Form.Item>
-                            </Col>
-                            <Col span={6}>
-                                <Form.Item label='Password' name="password">
-                                    <Input type='password' />
-                                </Form.Item>
-                            </Col>
-                            <Col span={6}>
-                                <Form.Item label='Confirm Password' name="confirmPassword">
-                                    <Input type='password' />
-                                </Form.Item>
-                            </Col>
-
-
-                    </Row>
-                    <div className='flex justify-end'>
-                            <button className='primary-contained-btn' type='submit'>
-                                    REGISTER
-                            </button>
-                    </div>
-            </Form>
+      </Form>
     </div>
-);
+  );
 }
 
-export default Register;  
+export default Register;

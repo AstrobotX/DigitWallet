@@ -5,10 +5,8 @@ mongoose.connect(process.env.mongo_url)
 const connectionResult = mongoose.connection;
 
 connectionResult.on('error', ()=>{
-    console.log('error connecting to database');
+    console.log('Error connecting to database');
 });
-connectionResult.on('connected', ()=>{
-    console.log('connected to MongoDB successfully');
+connectionResult.on('connected'  , ()=>{
+    console.log('Connected to database');
 });
-
-module.exports = connectionResult;
