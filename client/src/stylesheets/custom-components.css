@@ -31,11 +31,11 @@ table{
 .br-3{
   border-radius: 3px;
 }
+
 .brt-5{
   border-top-left-radius: 5px;
-  border-top-right-radius: 5px;  
+  border-top-right-radius: 5px;
 }
-
 
 @keyframes loader-anim {
   0% {

@@ -24,6 +24,9 @@ function Home() {
       </div>
 
       <div className="card p-2 mt-2 w-50 br-3 flex flex-col gap-1 uppercase">
+        <div className="flex justify-center">
+          <h1 className="text-md bold">USER PROFILE</h1>
+        </div>
         <div className="flex justify-between">
           <h1 className="text-md ">First Name</h1>
           <h1 className="text-md ">{user.firstName}</h1>
@@ -47,6 +50,10 @@ function Home() {
         <div className="flex justify-between">
           <h1 className="text-md ">Identification Number</h1>
           <h1 className="text-md ">{user.identificationNumber}</h1>
+        </div>
+        <div className="flex justify-between">
+          <h1 className="text-md ">Address</h1>
+          <h1 className="text-md ">{user.address}</h1>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ import PublicRoute from "./components/PublicRoute";
 import Loader from "./components/Loader";
 import { useSelector } from "react-redux";
 import Transactions from "./pages/Transactions";
-
+import Requests from "./pages/Requests";
 import Users from "./pages/Users";
 
 function App() {
@@ -56,7 +56,15 @@ function App() {
               </ProtectedRoute>
             }
           />
-          
+          <Route
+            path="/requests"
+            element={
+              <ProtectedRoute>
+                <Requests />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/users"
             element={

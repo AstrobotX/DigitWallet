@@ -96,7 +96,9 @@ function Users() {
     },
   ];
 
-  useEffect(() => { getData();}, []);
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <div>
       <PageTitle title="Users" />
